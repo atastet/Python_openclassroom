@@ -21,10 +21,8 @@ while stopper != 'n' :
 		print("Current state = {}".format(answer_string))
 		letter = get_letter(letter_liste)
 		letter_liste.extend(letter)
-		print(answer_string)
-		print(word)
-		print(letter_liste)
 		answer_string, nb_coup = check_if_letter_ok(word, letter, nb_coup, answer_string)
+		print("Il vous reste {} coups".format(nb_coup))
 	if nb_coup == 0 :
 		stopper = input("Dommage ... c'est perdu. o pour continuer n pour quitter o/n")
 		stopper.lower()

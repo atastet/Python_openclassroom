@@ -56,6 +56,7 @@ def get_letter_out(word, letter, position):
 def check_if_letter_ok(word, letter, nb_coup, answer_string):
 	if word.find(letter) == -1 :
 		print("Nope {} n'est pas dans ce mot".format(letter))
+		answer_modif = answer_string
 		nb_coup -= 1
 	else :
 		while word.find(letter) != -1 :
