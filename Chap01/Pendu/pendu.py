@@ -16,9 +16,10 @@ while stopper != 'n' :
 	nb_coup = 8 
 	word = get_word()
 	answer_string = get_string_ans(word) 
-	while (nb_coup > 0) :
-		answer_string,nb_coup = get_answer(word, answer_string, nb_coup)
-		print("Choisi une nouvelle lettre ... on est à {}".format(answer_string)) 
-print(scores[pseudo])
-print(answer_string)
-print(word)
+	while ((nb_coup > 0) and answer_string.find('*') != -1):
+		letter = get_letter()
+		answer_string, nb_coup = check_if_letter_ok(word, letter, nb_coup, answer_string)
+	print("Choisi une nouvelle lettre ... on est à {}".format(answer_string)) 
+	print(scores[pseudo])
+	print(answer_string)
+	print(word)

@@ -36,19 +36,24 @@ def get_string_ans(word):
 		i += 1
 	return (string)
 
-def get_answer(word, answer_string):
-	try : 
-		letter = input("Quelle lettre voulez vous jouer ?")
-		if word.find(letter) == -1 :
-			print("Nope {} n'est pas dans ce mot".format(letter))
-			nb_coup -= 1
-			return answer_string, nb_coup
-		else :
-			print("GREAT {} est dans le mot")
-			position = word.find(letter)
-			list(answer_string)
-			answer_string[position] = letter
-			''.join(answer_string)
-			return answer_string, nb_coup
-	except NameError : 
-		print("Une seule lettre !")
+def get_letter():
+	lettre = input("Tapez une lettre: ")
+	lettre = lettre.lower()
+	if len(lettre)>1 or not lettre.isalpha():
+		print("Vous n'avez pas saisi une lettre valide.")
+		return get_letter()
+	else:
+		return lettre
+
+def	check_if_letter_ok(word, letter, nb_coup, answer_string):
+	if word.find(letter) == -1 :
+		print("Nope {} n'est pas dans ce mot".format(letter))
+		nb_coup -= 1
+		return answer_string, nb_coup
+	else :
+		print("GREAT {} est dans le mot".format(letter))
+		position = word.find(letter)
+		answer_string = list(answer_string)
+		answer_string[position] = letter
+		''.join(answer_string)
+		return answer_string, nb_coup
