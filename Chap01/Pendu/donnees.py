@@ -24,7 +24,3 @@ liste_mots = [
     "vampire",
     "volant",
 ]
-
-#Fichier qui contient les scores
-
-nom_fichier_score = "score"

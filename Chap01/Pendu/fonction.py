@@ -14,8 +14,8 @@ def get_pseudo():
 		print("Votre pseudo doit être une chaine de caractere")
 
 def get_scores():
-	if os.path.exists(nom_fichier_score):
-		fichier_scores = open(nom_fichier_score, "rb")
+	if os.path.exists("score"):
+		fichier_scores = open("score", "rb")
 		mon_depickler = pickle.Unpickler(fichier_scores)
 		scores = mon_depickler.load()
 		fichier_scores.close()
@@ -47,22 +47,28 @@ def get_letter(letter_liste):
 			return get_letter(letter_liste)
 	return lettre
 
+def get_letter_out(word, letter, position):
+		word = list(word)
+		word[position] = '$'
+		word_modif = ''.join(word)
+		return word_modif
+
 def check_if_letter_ok(word, letter, nb_coup, answer_string):
 	if word.find(letter) == -1 :
 		print("Nope {} n'est pas dans ce mot".format(letter))
 		nb_coup -= 1
-		return answer_string, nb_coup
 	else :
-		print("GREAT {} est dans le mot".format(letter))
-		position = word.find(letter)
-		answer_string = list(answer_string)
-		answer_string[position] = letter
-		answer_modif = ''.join(answer_string)
-		return answer_modif, nb_coup
+		while word.find(letter) != -1 :
+			print("GREAT {} est dans le mot".format(letter))
+			position = word.find(letter)
+			word = get_letter_out(word, letter, position)
+			answer_string = list(answer_string)
+			answer_string[position] = letter
+			answer_modif = ''.join(answer_string)
+	return answer_modif, nb_coup
 
 def save_score(scores, pseudo):
-	nom_fichier = open("score", "wb")
-	mon_pickler = pickle.Pickler(mon_fichier)
+	fichier_scores = open("score", "wb") # On écrase les anciens scores
+	mon_pickler = pickle.Pickler(fichier_scores)
 	mon_pickler.dump(scores)
-	mon_fichier.close()	
-	 
+	fichier_scores.close()
