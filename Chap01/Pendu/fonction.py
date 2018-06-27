@@ -13,7 +13,7 @@ def get_pseudo():
 	except NameError :
 		print("Votre pseudo doit être une chaine de caractere")
 
-def load_scores():
+def get_scores():
 	if os.path.exists(nom_fichier_score):
 		fichier_scores = open(nom_fichier_score, "rb")
 		mon_depickler = pickle.Unpickler(fichier_scores)
@@ -31,21 +31,23 @@ def get_string_ans(word):
 	size = len(word)
 	i = 0
 	string = "*"
-	while i < size :
+	while i < size - 1 :
 		string = string + "*"
 		i += 1
 	return (string)
 
-def get_letter():
+def get_letter(letter_liste):
 	lettre = input("Tapez une lettre: ")
-	lettre = lettre.lower()
 	if len(lettre)>1 or not lettre.isalpha():
 		print("Vous n'avez pas saisi une lettre valide.")
-		return get_letter()
+		return get_letter(letter_liste)
 	else:
-		return lettre
+		if lettre in letter_liste :
+			print("{} déjà rentre...".format(lettre))
+			return get_letter(letter_liste)
+	return lettre
 
-def	check_if_letter_ok(word, letter, nb_coup, answer_string):
+def check_if_letter_ok(word, letter, nb_coup, answer_string):
 	if word.find(letter) == -1 :
 		print("Nope {} n'est pas dans ce mot".format(letter))
 		nb_coup -= 1
@@ -55,5 +57,12 @@ def	check_if_letter_ok(word, letter, nb_coup, answer_string):
 		position = word.find(letter)
 		answer_string = list(answer_string)
 		answer_string[position] = letter
-		''.join(answer_string)
-		return answer_string, nb_coup
+		answer_modif = ''.join(answer_string)
+		return answer_modif, nb_coup
+
+def save_score(scores, pseudo):
+	nom_fichier = open("score", "wb")
+	mon_pickler = pickle.Pickler(mon_fichier)
+	mon_pickler.dump(scores)
+	mon_fichier.close()	
+	 
