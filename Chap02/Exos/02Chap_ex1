@@ -1,0 +1,101 @@
+# -*-coding:Utf-8
+
+class DicOrd():
+    """Classe qui creer un dictionnaire ordonnee a l'aide de deux liste de tuples"""
+
+    def __init__(self, base={}, **donnees):
+
+        self._cles = []
+        self._valeurs = []
+
+        ##if base not in (dict, DicOrd):
+          ##  raise TypeError("""Type attendu est un dico""")
+
+        for cle in base:
+            self._cles.append(cle)
+            self._valeurs.append(base[cle])
+            print("Remplir list cle {} valeur {}".format(self._cles, self._valeurs))
+        ##  self[cle] = donnees[cle]
+
+
+    def __del__(self, key):
+        """Methode pour supprimer une valeur et une cle a partir de la cle"""
+        index = 0
+        for cle in self._cles:
+            if cle == key:
+                self._cles.__delitem__(index)
+                self._valeurs.__delitem__(index)
+            print("Test de del  {} et nb {}".format(self._valeurs, index))
+            index += 1
+
+    def __repr__(self):
+        """Methode pour impression de mon Dictionnaire"""
+
+        print("TEST A INTERIEUR DES CLEFS ORDS {}".format(self._cles))
+        print("TEST A INTERIEUR DES VAL ORDS {}".format(self._valeurs))
+        first_round = True
+        chaine = ""
+        for value in self._valeurs:
+            for cle in self._cles:
+                if first_round == False:
+                    chaine = chaine + ","
+                else:
+                    chaine = chaine + "{"
+                    first_round = False
+                chaine = chaine + "'" + str(cle) + "': " + str(value)
+        chaine += "}"
+        return chaine
+
+    def  __len__(self):
+        """Methode por connaitre la taille du dictionnaire"""
+
+        size = len(self._valeurs)
+        return size
+
+    def __contains__(self, item):
+        """Methode qui renvoi true si mon dico contient cette cle sinon false"""
+        contains = False
+        for cle in self._cles:
+            if cle == item:
+                contains = True
+        return contains
+
+    def __getitem__(self, item):
+        index = 0
+        Find = False
+        for cle in self._cles:
+            if cle == item:
+                valeur = self._valeurs[index]
+                Find = True
+            index += 1
+        if Find == False:
+           raise KeyError("La cle ne se trouve pas dans ce dico")
+        return valeur
+
+    def __setitem__(self, key, value):
+        """Methode qui permet de modifier la une cle, si la clef n'est pas presente on l'ajoute"""
+
+        index = 0
+        Find = False
+
+        for cle in self._cles:
+            if cle == key:
+                self._cles[index] = key
+                self._valeurs[index] = value
+                Find = True
+            index += 1
+        if Find == False:
+            self._cles[index] = key
+            self._cles[index] = value
+
+Legumes = {"Cailloux" : "gris","Mer": "bleu", "Herbe": "Verte", "Feu":"Rouge"}
+Mon_dico = DicOrd(Legumes)
+print("Long de mon dico avant del {}".format(len(Mon_dico)))
+print("""Mon dico {}""".format(Mon_dico))
+Mon_dico.__del__("Feu")
+print(Mon_dico)
+print("Long de mon dico apres de mon dico {}".format(len(Mon_dico)))
+print("Mer" in Mon_dico, "Coco" in Mon_dico)
+print(Mon_dico["Cailloux"])
+Mon_dico["Mer"] = "blanc"
+print(Mon_dico)
