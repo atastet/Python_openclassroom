@@ -12,3 +12,21 @@ class Carte:
 
     def __repr__(self):
         return "<Carte {}>".format(self.nom)
+
+#On passe la carte d'un formart string en tableau
+
+def creer_labyrinthe_depuis_chaine(chaine):
+    labyrinthe =[]
+    line = ""
+    for c in chaine:
+        if c != '\r':
+            if c != '\n':
+                line += c
+        else :
+            labyrinthe.append(line)
+            line =""
+    labyrinthe.append(line)
+    if labyrinthe[-1] == '':
+        labyrinthe.__delitem__(-1)
+    return labyrinthe
+
