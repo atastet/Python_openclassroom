@@ -16,6 +16,9 @@ class Carte:
 #On passe la carte d'un formart string en tableau
 
 def creer_labyrinthe_depuis_chaine(chaine):
+    """On passe la chaine en tableau pour obtenir une grille du type grid[y][x] pour pouvoir se situer en 2D
+    :type chaine = str"""
+
     labyrinthe =[]
     line = ""
     for c in chaine:

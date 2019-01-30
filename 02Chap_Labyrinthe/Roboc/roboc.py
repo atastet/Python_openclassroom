@@ -5,11 +5,11 @@
 Exécutez-le avec Python pour lancer le jeu.
 
 """
-
 import os
 
 from cartes_base_code import Carte
 from labyrinthe_base_code import Labyrinthe
+from coups_a_jouer import *
 
 # On charge les cartes existantes
 cartes = []
@@ -62,8 +62,23 @@ print("OK on va pouvoir jouer sur le labyrinthe niveau : {0}\n\n---{1}----\n\n{2
 my_map = Carte(labyrinthe_fichier[:-4], labyrinthe_str)
 
 #On créer une classe qui enregistre la position du robot et la grille
-# To do : finir d'enregistre la position
 my_lab = Labyrinthe(my_map)
-#On sauvegarde
+print(my_lab.robot_y, my_lab.robot_x, my_lab.grille_labyrinthe)
 
+#On va récupérer le premier coup à jouer
+print("""Le robot est contrôlable grâce à des commandes entrées au clavier. Il doit exister les commandes suivantes :
+- Q qui doit permettre de sauvegarder et quitter la partie en cours ;
+- N qui demande au robot de se déplacer vers le nord (c'est-à-dire le haut de votre écran) ;
+- E qui demande au robot de se déplacer vers l'est (c'est-à-dire la droite de votre écran) ;
+- S qui demande au robot de se déplacer vers le sud (c'est-à-dire le bas de votre écran) ;
+- O qui demande au robot de se déplacer vers l'ouest (c'est-à-dire la gauche de votre écran) ;
+- Chacune des directions ci-dessus suivies d'un nombre permet d'avancer de plusieurs cases (par exemple E3 pour avancer de trois cases vers l'est).""")
+recup_coup_a_jouer(my_lab)
+#SUPPRIMER A LA FIN
+print(my_lab.rep_instruction, my_lab.instruction)
+while verif_coup_a_jouer(my_lab) == -1:
+    print("Ce coup est impossible votre robot ne peut pas se déplacer ainsi")
+    print(verif_coup_a_jouer(my_lab))
+    recup_coup_a_jouer(my_lab)
+#On sauvegarde
 # ... Complétez le programme ...
