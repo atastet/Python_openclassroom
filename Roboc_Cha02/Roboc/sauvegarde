@@ -1,0 +1,60 @@
+(ilabyrinthe_base_code
+Labyrinthe
+p0
+(dp1
+S'grille_labyrinthe'
+p2
+(lp3
+S'OOOOOOOOOO'
+p4
+aS'O O    O O'
+p5
+aS'O . OO   O'
+p6
+aS'O O O   XO'
+p7
+aS'O OOOO O.O'
+p8
+aS'O O O    U'
+p9
+aS'O OOOOOO.O'
+p10
+aS'O O      O'
+p11
+aS'O O OOOOOO'
+p12
+aS'O . O    O'
+p13
+aS'OOOOOOOOOO '
+p14
+asS'robot_x_old'
+p15
+I8
+sS'grille_name'
+p16
+S'facile'
+p17
+sS'robot_x'
+p18
+I8
+sS'robot_y'
+p19
+I3
+sS'porte_passe'
+p20
+I00
+sS'old_case_replace_by_robot'
+p21
+S' '
+p22
+sS'robot_y_old'
+p23
+I2
+sS'rep_instruction'
+p24
+I1
+sS'instruction'
+p25
+S'Q'
+p26
+sb.
