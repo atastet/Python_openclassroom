@@ -1,6 +1,7 @@
 # -*-coding:Utf-8 -*
 
 from labyrinthe_base_code import Labyrinthe
+from modif_grille_visu import *
 
 """ Ces fonctions vont traiter tout ce qui a un rapport avec les coups à jouer:
     - Recuperer + Traiter les erreurs de frappe
@@ -48,8 +49,18 @@ def verif_case_libre(x, y, lab):
         return 3
     else :
         return -1
+
 def enregistre_nouvelle_position(lab, x, y):
+    """
+    Fonction qui enregistre l'ancienne position du robot pour pouvoir l'effacer et enregistre les nouveaux x et y"
+    :param lab:
+    :param x:
+    :param y:
+    :return:
+    """
+    print("TEST x old {}".format(lab.robot_x_old))
     lab.robot_x_old = lab.robot_x
+    print("TEST x old {}".format(lab.robot_x_old))
     lab.robot_y_old = lab.robot_y
     lab.robot_x = x
     lab.robot_y = y
