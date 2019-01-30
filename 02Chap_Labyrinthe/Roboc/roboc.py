@@ -10,6 +10,7 @@ import os
 from cartes_base_code import Carte
 from labyrinthe_base_code import Labyrinthe
 from coups_a_jouer import *
+from modif_grille_visu import *
 
 # On charge les cartes existantes
 cartes = []
@@ -76,9 +77,20 @@ print("""Le robot est contrôlable grâce à des commandes entrées au clavi
 recup_coup_a_jouer(my_lab)
 #SUPPRIMER A LA FIN
 print(my_lab.rep_instruction, my_lab.instruction)
-while verif_coup_a_jouer(my_lab) == -1:
-    print("Ce coup est impossible votre robot ne peut pas se déplacer ainsi")
-    print(verif_coup_a_jouer(my_lab))
+
+#ON RECUPERE LE COUP A JOUER, ON LE VERIFIE ET ON LE JOUE
+while my_lab.instruction != 'Q':
+    while verif_coup_a_jouer(my_lab) == -1:
+        print("Ce coup est impossible votre robot ne peut pas se déplacer ainsi")
+        print(verif_coup_a_jouer(my_lab))
+        recup_coup_a_jouer(my_lab)
+    if (verif_coup_a_jouer(my_lab) == 10):
+        print("******* V.I.C.T.O.I.R.E ********)")
+        break
+    print("apres = x = {}, y = {} la case est un '{}'".format(my_lab.robot_x, my_lab.robot_y,my_lab.grille_labyrinthe[my_lab.robot_y][my_lab.robot_x]))
+    modif_grille(my_lab)
     recup_coup_a_jouer(my_lab)
+
+print("Ca sent la sauvegarde")
 #On sauvegarde
 # ... Complétez le programme ...
