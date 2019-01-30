@@ -16,7 +16,7 @@ from sauvegarder import *
 #On demande si on reprend l'ancienne partie
 
 while True:
-    reprise = input("""Voulez vous reprendre la partie sauvegardée ??\nTapez :\n "O" pour oui\n "N" pour non\n...""")
+    reprise = raw_input("""Voulez vous reprendre la partie sauvegardée ??\nTapez :\n "O" pour oui\n "N" pour non\n...""")
     if reprise.upper() == 'N' or reprise.upper() == 'O':
         break
 
@@ -38,7 +38,7 @@ if reprise.upper() == 'N':
     for i, carte in enumerate(cartes):
         print("  {} - {} \n{}".format(i + 1,mes_fichiers[i][:-4].upper(),cartes[i]))
     #On demande à l'utilisateur de rentrer le labyrinthe qu'il veut utiliser
-    labyrinthe_choice = input("Entrez le numéro de labyrinthe sur lequel vous voulez jouer :\n...")
+    labyrinthe_choice = raw_input("Entrez le numéro de labyrinthe sur lequel vous voulez jouer :")
     lab_choice = 0
     #On vérifie que la valeur entrée soit bien un int et si le labyrinthe existe
     while lab_choice == 0:
@@ -46,11 +46,11 @@ if reprise.upper() == 'N':
             lab_choice =int(labyrinthe_choice)
         except ValueError:
             print("Vous devez entrez un chiffre entre : 1 et {}\n".format(i+1))
-            labyrinthe_choice = input("\nEntrez un numéro de labyrinthe sur lequel vous voulez jouer ...")
+            labyrinthe_choice = raw_input("\nEntrez un numéro de labyrinthe sur lequel vous voulez jouer ...")
             continue
         while lab_choice < 1 or lab_choice > (i + 1):
             print("Ce labyrinthe n'existe pas !\n")
-            labyrinthe_choice = input("\nEntrez un numéro de labyrinthe sur lequel vous voulez jouer entre : 1 et {}\n".format(i+1))
+            labyrinthe_choice = raw_input("\nEntrez un numéro de labyrinthe sur lequel vous voulez jouer entre : 1 et {}\n".format(i+1))
             lab_choice = int(labyrinthe_choice)
     #On transforme l'input avec le vrai nom du fichier dans notre repo
     print(lab_choice)
@@ -65,12 +65,11 @@ if reprise.upper() == 'N':
     my_map = Carte(labyrinthe_fichier[:-4], labyrinthe_str)
     #On créer une classe qui enregistre la position du robot et la grille
     my_lab = Labyrinthe(my_map)
-    print(my_lab.robot_y, my_lab.robot_x, my_lab.grille_labyrinthe)
 else:
     my_lab = recup_sauvgarde()
 
 #On va récupérer le premier coup à jouer
-print("""Le robot est contrôlable grâce à des commandes entrées au clavier. Il doit exister les commandes suivantes :
+print("""Le robot est contrôlable grâce à des commandes entrées au clavier suivantes :
 - Q qui doit permettre de sauvegarder et quitter la partie en cours ;
 - N qui demande au robot de se déplacer vers le nord (c'est-à-dire le haut de votre écran) ;
 - E qui demande au robot de se déplacer vers l'est (c'est-à-dire la droite de votre écran) ;
@@ -78,23 +77,19 @@ print("""Le robot est contrôlable grâce à des commandes entrées au clavi
 - O qui demande au robot de se déplacer vers l'ouest (c'est-à-dire la gauche de votre écran) ;
 - Chacune des directions ci-dessus suivies d'un nombre permet d'avancer de plusieurs cases (par exemple E3 pour avancer de trois cases vers l'est).""")
 recup_coup_a_jouer(my_lab)
-#SUPPRIMER A LA FIN
-print(my_lab.rep_instruction, my_lab.instruction)
 
 #ON RECUPERE LE COUP A JOUER, ON LE VERIFIE ET ON LE JOUE
 while my_lab.instruction != 'Q':
     ret = verif_coup_a_jouer(my_lab)
     while ret == -1:
         print("Ce coup est impossible votre robot ne peut pas se déplacer ainsi")
-        for ligne in my_lab.grille_labyrinthe: #Supprimer
+        for ligne in my_lab.grille_labyrinthe: #Imprime la map pour que le joueur puisse rejouer
             print(ligne)
-        print(my_lab.robot_x, my_lab.robot_y) #supprimer
         recup_coup_a_jouer(my_lab)
         ret = verif_coup_a_jouer(my_lab)
     if (ret == 10):
-        print("******* V.I.C.T.O.I.R.E ********)")
+        print("""*******************************************\n************* V.I.C.T.O.I.R.E *************\n*******************************************""")
         break
-    print("apres = x = {}, y = {} la case est un '{}'".format(my_lab.robot_x, my_lab.robot_y,my_lab.grille_labyrinthe[my_lab.robot_y][my_lab.robot_x]))
     modif_grille(my_lab)
     recup_coup_a_jouer(my_lab)
 
