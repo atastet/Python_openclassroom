@@ -5,56 +5,74 @@ p0
 S'grille_labyrinthe'
 p2
 (lp3
-S'OOOOOOOOOO'
+S'OOOOOOOOOOOOOOOOOOOO'
 p4
-aS'O O    O O'
+aS'O O . O    O .     O'
 p5
-aS'O . OO   O'
+aS'O.O O O    O O     O'
 p6
-aS'O O O   XO'
+aS'O O O O    O O     O'
 p7
-aS'O OOOO O.O'
+aS'O.O O .    O O     O'
 p8
-aS'O O O    U'
+aS'O O O OOOOOO O     O'
 p9
-aS'O OOOOOO.O'
+aS'O O O        O     O'
 p10
-aS'O O      O'
+aS'O O OOOOOOOOOO     O'
 p11
-aS'O O OOOOOO'
+aS'O.O .        O     O'
 p12
-aS'O . O    O'
+aS'O O O        O     O'
 p13
-aS'OOOOOOOOOO '
+aS'O O O        O     O'
 p14
-asS'robot_x_old'
+aS'O O.O        O     O'
 p15
-I8
-sS'grille_name'
+aS'O.O .      X O     O'
 p16
-S'facile'
+aS'O O O        O     O'
 p17
-sS'robot_x'
+aS'O O O        O     O'
 p18
-I8
-sS'robot_y'
+aS'O O O        O     O'
 p19
-I3
-sS'porte_passe'
+aS'O O O        O     O'
 p20
+aS'O.O O        O     O'
+p21
+aS'O   O        O     U'
+p22
+aS'OOOOOOOOOOOOOOOOOOOO'
+p23
+asS'robot_x_old'
+p24
+I10
+sS'grille_name'
+p25
+S'prison'
+p26
+sS'robot_x'
+p27
+I11
+sS'robot_y'
+p28
+I12
+sS'porte_passe'
+p29
 I00
 sS'old_case_replace_by_robot'
-p21
+p30
 S' '
-p22
+p31
 sS'robot_y_old'
-p23
-I2
+p32
+I12
 sS'rep_instruction'
-p24
+p33
 I1
 sS'instruction'
-p25
+p34
 S'Q'
-p26
+p35
 sb.
